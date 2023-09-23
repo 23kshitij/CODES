@@ -9,25 +9,18 @@ class Solution{
     // Function to find equilibrium point in the array.
     // a: input array
     // n: size of array
-    int equilibriumPoint(long long a[], int n) {
-    long long totalSum = 0; 
-
-        for (int i = 0; i < n; i++) {
-            totalSum += a[i];
-        }
-        
-        long long leftSum = 0;
-        
-        for (int i = 0; i < n; i++) {
-           
-            if (leftSum == totalSum - leftSum - a[i]) {
-                return i + 1; 
-            }
+   int equilibriumPoint(long long a[], int n) {
+        long long sum = 0, preSum = 0;
+        for(int i = 0; i < n; ++i)
+            sum += a[i];
             
-            leftSum += a[i];
+        for(int i = 0; i < n; ++i){
+            sum -= a[i];
+            if(sum == preSum)
+                return i+1;
+            preSum += a[i];
         }
-        
-        return -1; 
+        return -1;
     }
 
 };
